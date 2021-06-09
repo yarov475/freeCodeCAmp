@@ -1,27 +1,22 @@
-function translatePigLatin(str) {
-    let testReg = /[aeoui]/gi;
-    let testRegConsonant = /[qwrtplkjhgfdszxcbnm]/gi;
-    let count=0;
-
-    if (str[0].match(testReg)) {
-        return str += 'way';
-    }
+const translatePigLatin = str => {
+    const regExp = /[aeoui]/gi;
+    const testRegConsonant = /[qwrtplkjhgfdszxcbnm]/;
+    let count = 0;
     for (let i = 0; i <= str.length; i++) {
-        if (str[i].match(testRegConsonant)) {
-            count++
-             } else  {
-            console.log(`wowel ${str[i]} find at`, count);
-            return
+        if (!str[0].match(regExp)) {
+            while (str[i].match(testRegConsonant)&&i<=str.length) {
+                count++;console.log(count);
+                if(i===str.length){
+console.log(str)
+                    return str+'ay'}
+            }
+            if (str[i].match(regExp)) return str.substr(count).concat(str.substr(0, count), "ay");
         }
-
-        let start = str.substr(count);
-        let end = str.substr(0,count);
-        console.log(end, count);
-
-       return start + end  + 'ay';
-
+        else {
+            return `${str}way`;
+        }
     }
-}
+};
 
-console.log(translatePigLatin('strping'));
+console.log(translatePigLatin('glav'));
 //console.log(translatePigLatin('string'));
